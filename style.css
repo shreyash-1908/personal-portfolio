@@ -1,0 +1,413 @@
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+
+/* --- CSS Variables --- */
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --accent-color: #00aaff;
+    --secondary-bg-color: #2a2a2a;
+    --muted-text-color: #888;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* --- Global Styles & Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+.section {
+    padding: 6rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+/* --- Header Section --- */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.4s ease, padding 0.4s ease;
+}
+
+#header.scrolled {
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    transition: height 0.4s ease;
+}
+
+#header.scrolled nav {
+    height: 4rem;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative; /* For the background and overlay */
+    overflow: hidden; /* Ensures content stays within bounds */
+
+    /* --- NEW: Background Image Styles --- */
+    background-image: url('hero-bg\ \(3\).jpg'); /* Replace with your image path */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Don't repeat the image */
+}
+
+/* --- NEW: Add a dark overlay to ensure text readability --- */
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Adjust opacity as needed */
+    z-index: 1;
+}
+
+/* --- Corrected Hero Text Styles --- */
+
+/* Ensure text is above the overlay */
+#hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 4rem; /* Restored original font size */
+    margin-bottom: 0.5rem;
+}
+
+#hero .tagline {
+    font-size: 1.5rem; /* Restored original font size */
+    color: var(--muted-text-color);
+    font-weight: 400;
+}
+
+/* --- About Section --- */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.about-image {
+    flex-basis: 30%;
+}
+
+.about-image img {
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
+}
+
+.about-text {
+    flex-basis: 70%;
+    font-size: 1.1rem;
+}
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skill-item {
+    background-color: var(--secondary-bg-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 500;
+    font-family: var(--font-heading);
+}
+
+/* --- Projects Section --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: var(--secondary-bg-color); /* This will be the fallback if image fails */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    border: 2px solid transparent;
+
+    /* New styles for background images */
+    min-height: 400px; /* Give cards enough height to show image */
+    display: flex; /* Use flexbox to position content over background */
+    flex-direction: column;
+    justify-content: flex-end; /* Push content to the bottom */
+    position: relative; /* For overlay */
+    padding-top: 150px; /* Space for the image at the top */
+    background-size: cover;
+    background-position: center top; /* Position image nicely at the top */
+    background-repeat: no-repeat;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Darker gradient at the bottom */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 1; /* Place overlay above background image */
+}
+/* Ensure content is above the overlay */
+.project-card h3,
+.project-card p,
+.project-card .project-links {
+    position: relative;
+    z-index: 2;
+    color: var(--text-color); /* Ensure text color */
+    padding-left: 1.5rem; /* Add more padding to the left */
+    padding-right: 1.5rem; /* Add more padding to the right */
+}
+
+.project-quiz {
+    background-image: url('quiz.png'); /* Replace with your Quiz App image */
+}
+.project-jobboard {
+    background-image: url('Gemini_Generated_Image_1.png'); /* Replace with your Job Board image */
+}
+
+.project-landingpage {
+    background-image: url('Gemini_Generated_Image_\(2\).png'); /* Replace with your Landing Page image */
+}
+
+.project-calculator {
+    background-image: url('calculator.jpg'); /* Replace with your Calculator image */
+}
+
+.project-portfolio {
+    background-image: url('portfolio\ \(2\).jpg'); /* Replace with your Portfolio image */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-color: var(--accent-color);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    padding-top: 1rem; /* Adjust top padding for title */
+    font-size: 1.6rem; /* Make title slightly larger */
+    font-weight: 700; /* Make title bolder */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Subtle text shadow for visibility */
+}
+
+.project-card p {
+    padding-top: 0.5rem; /* Adjust top padding for description */
+    padding-bottom: 1rem; /* Adjust bottom padding for description */
+    color: #e0e0e0; /* Slightly brighter than muted-text-color for better contrast */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Subtle text shadow for visibility */
+}
+
+.project-links {
+    padding-bottom: 1.5rem; /* Ensure consistent bottom padding */
+    padding-left: 1.5rem; /* Keep existing padding */
+    padding-right: 1.5rem; /* Keep existing padding */
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #0077cc;
+    color: #fff;
+}
+
+/* --- Resume Section --- */
+#resume {
+    text-align: center;
+}
+#resume p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+.btn-primary {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* --- Contact Section --- */
+#contact {
+    text-align: center;
+}
+
+.contact-email {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.social-links a {
+    font-size: 2.5rem;
+    margin: 0 1rem;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: var(--secondary-bg-color);
+    color: var(--muted-text-color);
+    margin-top: 4rem;
+}
+
+/* --- Media Queries (Responsiveness) --- */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 3rem;
+    }
+    #hero .tagline {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links {
+        display: none; /* For simplicity. A real project might add a hamburger menu */
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+}
